@@ -44,8 +44,8 @@
 	
 	define ('DB_TYPE','mysql');
 	define ('DB_HOST','localhost');
-	define ('DB_USER','escmis');
-	define ('DB_PWD','m0h1ct11');
-	define ('DB_DB','escmis');
+	define ('DB_USER','username');
+	define ('DB_PWD','password');
+	define ('DB_DB','database');
 
 ?>
