@@ -37,6 +37,7 @@ class User{
 		return self::$instance;
 	}//end function getInstance()
 	
+	
 	public function userToken($numStr,$strPrx) 
 	{ 
 		srand((double)microtime()*rand(1000000,9999999)); // Seed random number generator 
@@ -66,8 +67,7 @@ class User{
 		$m_pass1 = $_POST['password1'];
 		$m_pass2 = $_POST['password2'];
 
-		if($m_pass1==$m_pass2)
-		{
+		if($m_pass1==$m_pass2) {
 			extract($_POST);
 			//get posted values
 			$m_empid = $_POST['email'];
@@ -78,7 +78,7 @@ class User{
 			$m_user = $_POST['username'];
 			$m_upass = $m_pass1;
 	
-			$sqlInsert = "INSERT INTO escmis_user (USER_ID,FULLNAME,USERNAME,UPASS,TITLE,PROVINCE,EMAIL,PHOTO,ACCEPT,REG_DATE) VALUES ('".$m_fname."','".$m_user."','".$m_upass."','".$m_title."','".$m_province."','".$m_email."','".$photo."','0','".date('Y-m-d H:i:s')."')";
+			$sqlInsert = "INSERT INTO escmis_user (USER_ID,FULLNAME,USERNAME,UPASS,TITLE,PROVINCE,EMAIL,PHOTO,ACCEPT,REG_DATE) VALUES (NULL,'".$m_fname."','".$m_user."','".$m_upass."','".$m_title."','".$m_province."','".$m_email."','".$photo."','0','".date('Y-m-d H:i:s')."')";
 				
 			$result = mysql_query($sqlInsert) or die (mysql_error());
 			//Here Send email to user
@@ -94,7 +94,7 @@ class User{
 			$email_id=$_POST['email'];
 			$pwd=$m_upass;
 			
-			$emp=mysql_query("SELECT * FROM escmis_user WHERE email='".$email_id."'");
+			$emp=mysql_query("select * from escmis_user where email='".$email_id."'");
 			$fetch_emp=mysql_fetch_array($emp);
 			$random_id=$fetch_emp['user_id'];
 			
@@ -110,21 +110,16 @@ class User{
 			
 			$_SESSION['email_id']="";
 			$from=$from_mail['company_name'];
-				
 			$url_link="$site_url/index.php?task=update&url=$email_id";
-			
 			$email_subject="Confirm Your Registration to eSCMIS";
 			$headers .= "From: $from <$adminemail>\r\n";
-		
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 				   $api=array(
 								'$email_id'=>$m_user,
 								'$pwd'=>$pwd,
-								'$url_link'=>$url_link,
-							   
+								'$url_link'=>$url_link,		   
 							   );
-
 		    $message=strtr($msg,$api);
    			$mail_cnt=mail($email_id, $email_subject, $message, $headers);
 			
@@ -134,19 +129,16 @@ class User{
 		}
 	}
 	
-	
 	//check for existence of partner
 	public function IsExistsUser($email)
 	{
 		$sqlExists = "SELECT * FROM escmis_user WHERE EMAIL='".$email."'";  
 		$result_exists = mysql_query($sqlExists) or die (mysql_error());
 		$num_rows = mysql_num_rows($result_exists);
-		if($num_rows==0)
-		{
+
+		if($num_rows==0) {
 			return false;
-		}
-		else
-		{
+		} else {
 			return true;
 		}
 	}
@@ -154,8 +146,7 @@ class User{
 	public function chkLogin_front()
 	{
 		//global $_SESSION;
-		if(isset($_SESSION['EMAIL']) && !empty($_SESSION['EMAIL']))
-		{
+		if(isset($_SESSION['EMAIL']) && !empty($_SESSION['EMAIL'])) {
 			return true;
 		} else {
 			header("location:index.php");
@@ -169,19 +160,16 @@ class User{
 		$sql = "SELECT * FROM escmis_user WHERE USERNAME='".$_POST['username']."' AND UPASS='".$_POST['password']."' and ACCEPT='1'";  
 		$result = mysql_query($sql) or die (mysql_error());
 		$num_rows = mysql_num_rows($result);
-		if($num_rows==0)
-		{
+
+		if($num_rows==0) {
 			return false;
-		}
-		else
-		{
+		} else {
 			$row_request = mysql_fetch_array($result);
 			//session_unset();
 			//session_start();
 			$_SESSION['FNAME'] = $row_request['FULLNAME'];
 			$_SESSION['TOKEN'] = $row_request['USER_ID'];
 			$_SESSION['EMAIL'] = $row_request['EMAIL'];
-					
 			return true;
 		}
 	}
@@ -191,8 +179,7 @@ class User{
 		$sql_update = "UPDATE user set ACCEPT='".$_GET['val']."' WHERE USER_ID='".$_GET['id']."'";
 		$result_update = mysql_query($sql_update) or die (mysql_error());
 		
-		if($_GET['val']=="1")
-		{
+		if ($_GET['val']=="1") {
 			$sql = "SELECT * FROM user WHERE USER_ID='".$_GET['id']."' AND ACCEPT='1'";    
 			$result = mysql_query($sql) or die (mysql_error());
 			$num_rows = mysql_num_rows($result);
@@ -271,6 +258,7 @@ class User{
 			//echo $message;
 			@mail($to, $subject, $message, $headers);
 		}
+
 		return true;
 	}
 	
