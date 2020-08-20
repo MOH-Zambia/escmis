@@ -44,19 +44,19 @@ class User{
 		$arrChar=array(); // New array 
 		$uId=$strPrx; // Write prefix in the uniq id 
 		 
-		for($i=65;$i<90;$i++) 
-		{ 
+		for($i=65;$i<90;$i++) { 
 			array_push($arrChar,chr($i)); // Add A-Z to array 
 			array_push($arrChar,strtolower(chr($i))); // Add a-z to array 
 		} 
-		for($i=48;$i<57;$i++) 
-		{ 
+
+		for($i=48;$i<57;$i++) { 
 			array_push($arrChar,chr($i)); // Add 0-9 to array 
 		} 
-		for($i=0;$i<$numStr;$i++) 
-		{ 
+
+		for($i=0;$i<$numStr;$i++) { 
 			$uId.=$arrChar[rand(0,count($arrChar))]; // Write random picked chars in the uniq id 
 		} 
+		
 		//print "Uniq ID is : $uId"; // Print uniq ID on the screen
 		return $uId;
 	}
