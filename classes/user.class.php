@@ -37,7 +37,6 @@ class User{
 		return self::$instance;
 	}//end function getInstance()
 	
-	
 	public function userToken($numStr,$strPrx) 
 	{ 
 		srand((double)microtime()*rand(1000000,9999999)); // Seed random number generator 
@@ -66,6 +65,7 @@ class User{
 	{
 		$m_pass1 = $_POST['password1'];
 		$m_pass2 = $_POST['password2'];
+
 		if($m_pass1==$m_pass2)
 		{
 			extract($_POST);
@@ -78,7 +78,7 @@ class User{
 			$m_user = $_POST['username'];
 			$m_upass = $m_pass1;
 	
-			$sqlInsert = "INSERT INTO escmis_user (USER_ID,FULLNAME,USERNAME,UPASS,TITLE,PROVINCE,EMAIL,PHOTO,ACCEPT,REG_DATE) values ('".$token."','".$m_fname."','".$m_user."','".$m_upass."','".$m_title."','".$m_province."','".$m_email."','".$photo."','0','".date('Y-m-d H:i:s')."')";
+			$sqlInsert = "INSERT INTO escmis_user (USER_ID,FULLNAME,USERNAME,UPASS,TITLE,PROVINCE,EMAIL,PHOTO,ACCEPT,REG_DATE) VALUES ('".$m_fname."','".$m_user."','".$m_upass."','".$m_title."','".$m_province."','".$m_email."','".$photo."','0','".date('Y-m-d H:i:s')."')";
 				
 			$result = mysql_query($sqlInsert) or die (mysql_error());
 			//Here Send email to user
@@ -94,9 +94,7 @@ class User{
 			$email_id=$_POST['email'];
 			$pwd=$m_upass;
 			
-			
-			
-			$emp=mysql_query("select * from escmis_user where email='".$email_id."'");
+			$emp=mysql_query("SELECT * FROM escmis_user WHERE email='".$email_id."'");
 			$fetch_emp=mysql_fetch_array($emp);
 			$random_id=$fetch_emp['user_id'];
 			
@@ -110,14 +108,11 @@ class User{
 					$result_update = mysql_query($sql_update) or die (mysql_error());	
 			}*/
 			
-			
-			
 			$_SESSION['email_id']="";
 			$from=$from_mail['company_name'];
 				
 			$url_link="$site_url/index.php?task=update&url=$email_id";
 			
-					
 			$email_subject="Confirm Your Registration to eSCMIS";
 			$headers .= "From: $from <$adminemail>\r\n";
 		
@@ -129,15 +124,12 @@ class User{
 								'$url_link'=>$url_link,
 							   
 							   );
-		    $message=strtr($msg,$api);
 
-   $mail_cnt=mail($email_id, $email_subject, $message, $headers);
-			
-			
+		    $message=strtr($msg,$api);
+   			$mail_cnt=mail($email_id, $email_subject, $message, $headers);
 			
 			return true;
-		}else
-		{
+		} else {
 			return false;
 		}
 	}
@@ -159,19 +151,13 @@ class User{
 		}
 	}
 
-	
 	public function chkLogin_front()
-
 	{
-
 		//global $_SESSION;
-
 		if(isset($_SESSION['EMAIL']) && !empty($_SESSION['EMAIL']))
 		{
 			return true;
-		}
-		else
-		{
+		} else {
 			header("location:index.php");
 		}
 	}
@@ -195,7 +181,7 @@ class User{
 			$_SESSION['FNAME'] = $row_request['FULLNAME'];
 			$_SESSION['TOKEN'] = $row_request['USER_ID'];
 			$_SESSION['EMAIL'] = $row_request['EMAIL'];
-			
+					
 			return true;
 		}
 	}
