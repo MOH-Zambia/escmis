@@ -78,7 +78,7 @@ class User{
 			$m_user = $_POST['username'];
 			$m_upass = $m_pass1;
 	
-			$sqlInsert = "INSERT INTO escmis_user (USER_ID,FULLNAME,USERNAME,UPASS,TITLE,PROVINCE,EMAIL,PHOTO,ACCEPT,REG_DATE) VALUES (NULL,'".$m_fname."','".$m_user."','".$m_upass."','".$m_title."','".$m_province."','".$m_email."','".$photo."','0','".date('Y-m-d H:i:s')."')";
+			$sqlInsert = "INSERT INTO escmis_user (USER_ID,FULLNAME,USERNAME,UPASS,TITLE,PROVINCE,EMAIL,PHOTO,ACCEPT,REG_DATE) VALUES (NULL,'".$m_fname."','".$m_user."','".$m_upass."','".$m_title."','".$m_province."','".$m_email."','".$photo."','1','".date('Y-m-d H:i:s')."')";
 				
 			$result = mysql_query($sqlInsert) or die (mysql_error());
 			//Here Send email to user

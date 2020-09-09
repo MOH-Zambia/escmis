@@ -3,14 +3,16 @@
 	require_once('config.php');
 	require_once('DBConnectivity.php');
 
+	global $task;
 
-	if($_GET['task']=="update")
-	
-	{
+    if(isset($_GET['task'])){
+        $task = $_GET['task'];
+    }
+
+	if($task == "update") {
 		include "update.php";
 	}
-	
-	?>
+?>
 
 
 <!DOCTYPE HTML>
@@ -51,29 +53,22 @@
                 <h1>Requirements Gathering Tool</h1>
 				<p style="color:#FFCC00">Electronic Supply Chain Management Information System</p>
                 <?php
-			   if(isset($_GET["logout"])=="1")
-				{
-					$_SESSION['FNAME'] = "";
-					$_SESSION['TOKEN'] = "";
-					$_SESSION['EMAIL'] = "";
-					session_unset();
-					session_destroy();
-					
-				}
+                   if(isset($_GET["logout"])=="1") {
+                        $_SESSION['FNAME'] = "";
+                        $_SESSION['TOKEN'] = "";
+                        $_SESSION['EMAIL'] = "";
+                        session_unset();
+                        session_destroy();
+                    }
+
+                    if(isset($_SESSION['EMAIL'])){
+                        include 'menu1.php';
 				?>
-				<?PHP
-                $user_type=$_SESSION['EMAIL'];
-                if($user_type=="")
-                {
-                    //include 'menu.php';
-                    
-                }else
-				{				
-					include 'menu1.php';
-				?>
+
                 <p style="color:#FFCC00">Welcome <b style="color:#FFCC00"><?php echo $_SESSION['FNAME'];?> </b></p>
+
                 <?php
-				}
+				    }
 				?>
                 
 			</section>

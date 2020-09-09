@@ -107,16 +107,16 @@
                             <div>
 							  <select name="province" id="province" class="myprovince">
                                 <option value="">--Select Province Here --</option>
-                                <option value="Copperbelt"  <?php if( $fetch_profile['province']=='copperbelt') { ?> selected="selected" <?php } ?>>Copperbelt</option>
-                                <option value="Western"  <?php if( $fetch_profile['province']=='western') { ?> selected="selected" <?php } ?>>Western</option>
-                                <option value="NorthWestern"  <?php if( $fetch_profile['province']=='northwestern') { ?> selected="selected" <?php } ?>>North Western</option>
-                                <option value="Luapula"  <?php if( $fetch_profile['province']=='luapula') { ?> selected="selected" <?php } ?>>Luapula</option>
-                                <option value="Northern"  <?php if( $fetch_profile['province']=='northern') { ?> selected="selected" <?php } ?>>Northern</option>
-                                <option value="Muchinga"  <?php if( $fetch_profile['province']=='muchinga') { ?> selected="selected" <?php } ?>>Muchinga</option>
-                                <option value="Eastern"  <?php if( $fetch_profile['province']=='eastern') { ?> selected="selected" <?php } ?>>Eastern</option>
-                                <option value="Central"  <?php if( $fetch_profile['province']=='central') { ?> selected="selected" <?php } ?>>Central</option>
-                              	<option value="Lusaka"  <?php if( $fetch_profile['province']=='lusaka') { ?> selected="selected" <?php } ?>>Lusaka</option>
-                              <option value="Southern"  <?php if( $fetch_profile['province']=='southern') { ?> selected="selected" <?php } ?>>Southern</option>
+                                <option value="Copperbelt"> Copperbelt </option>
+                                <option value="Western"> Western </option>
+                                <option value="NorthWestern"> North Western </option>
+                                <option value="Luapula"> Luapula </option>
+                                <option value="Northern"> Northern </option>
+                                <option value="Muchinga"> Muchinga </option>
+                                <option value="Eastern"> Eastern </option>
+                                <option value="Central"> Central </option>
+                              	<option value="Lusaka"> Lusaka </option>
+                              <option value="Southern"> Southern </option>
                              </select>
 							</div>
                             </p>
