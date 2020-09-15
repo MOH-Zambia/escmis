@@ -32,9 +32,9 @@
 
 		<!-- Banner -->
 			<section id="banner">
-				<h1>eSCMIS Assessment - June 2020</h1>
+				<h1>LIS Assessment - September 2020</h1>
                 <h1>Requirements Gathering Tool</h1>
-				<p style="color:#FFCC00">Electronic Supply Chain Management Information System</p>
+				<p style="color:#FFCC00">Laboratory Information System</p>
                 
 			</section>
 			 <p>&nbsp;</p>
